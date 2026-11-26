@@ -1,0 +1,45 @@
+{
+	"configuracion_usuario": {
+		"moneda": "VES",
+		"limite_semanal": 0
+	},
+	"precios_habituales": [
+		{ "producto": "empanada", "precio_ves": 900, "categoria": "Comida", "sinonimos": ["empanada", "empanadas"] },
+		{ "producto": "malta", "precio_ves": 800, "categoria": "Comida", "sinonimos": ["malta", "maltas"] },
+		{ "producto": "pasaje urbano", "precio_ves": 400, "categoria": "Transporte", "sinonimos": ["pasaje", "pasaje urbano", "bus", "autobus", "autobús"] },
+		{ "producto": "impresión o copia", "precio_ves": 100, "categoria": "Copias y materiales", "sinonimos": ["impresion", "impresión", "copia", "copias", "fotocopia", "fotocopias"] }
+	],
+	"gastos_historicos": [
+		{ "id": "seed-1", "fecha": "2026-11-03T08:30:00.000Z", "descripcion": "Empanada de queso", "monto_ves": 900, "categoria": "Comida", "mensaje_original": "Gasté 900 en una empanada de queso" },
+		{ "id": "seed-2", "fecha": "2026-11-02T07:45:00.000Z", "descripcion": "Pasaje urbano", "monto_ves": 400, "categoria": "Transporte", "mensaje_original": "Pagué 400 de pasaje para ir a clases" },
+		{ "id": "seed-3", "fecha": "2026-11-01T14:10:00.000Z", "descripcion": "Impresión de apuntes", "monto_ves": 300, "categoria": "Copias y materiales", "mensaje_original": "Imprimí tres páginas por 300 bolívares" },
+		{ "id": "seed-4", "fecha": "2026-10-31T12:20:00.000Z", "descripcion": "Malta", "monto_ves": 800, "categoria": "Comida", "mensaje_original": "Compré una malta por 800" },
+		{ "id": "seed-5", "fecha": "2026-10-30T16:05:00.000Z", "descripcion": "Recarga de teléfono", "monto_ves": 1200, "categoria": "Imprevistos", "mensaje_original": "Tuve un gasto imprevisto de 1200 en una recarga" }
+	],
+	"cotizaciones_demo": [
+		{
+			"producto": "audífonos bluetooth",
+			"ofertas": [
+				{ "tienda": "Escenario A · simulación", "precio_ves": 18900, "detalle": "Precio de ejemplo; no es una cotización vigente." },
+				{ "tienda": "Escenario B · simulación", "precio_ves": 22500, "detalle": "Precio de ejemplo; no es una cotización vigente." },
+				{ "tienda": "Escenario C · simulación", "precio_ves": 20750, "detalle": "Precio de ejemplo; no es una cotización vigente." }
+			]
+		}
+	],
+	"consejos": [
+		{ "titulo": "Dale una noche a las compras grandes", "texto": "Guarda el producto y vuelve a comparar mañana. Una pausa ayuda a separar necesidad de impulso.", "categoria": "Compras" },
+		{ "titulo": "Convierte el precio en horas de estudio", "texto": "Divide el costo por lo que ganas o recibes por hora para poner la compra en perspectiva.", "categoria": "Presupuesto" },
+		{ "titulo": "Compara el costo completo", "texto": "Suma envío, comisiones y garantía antes de decidir. El precio publicado no siempre es el total.", "categoria": "Compras" },
+		{ "titulo": "Agrupa impresiones", "texto": "Revisa si puedes imprimir varias páginas por hoja y comparte el viaje a la copistería.", "categoria": "Campus" },
+		{ "titulo": "Separa primero lo necesario", "texto": "Aparta transporte y materiales de la semana antes de asignar dinero a gastos flexibles.", "categoria": "Presupuesto" }
+	],
+	"tasas_respaldo": {
+		"fecha_actualizacion": "2026-11-18T00:00:00-04:00",
+		"es_respaldo": true,
+		"tasas_ves": {
+			"USD_BCV": 916.6477,
+			"EUR_BCV": 1007.38665582,
+			"USDT_REF": 1000
+		}
+	}
+}

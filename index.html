@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="theme-color" content="#101512" />
+		<meta name="description" content="Tu panel de finanzas, metas y vida universitaria." />
+		<title>UniFinanzas — Finanzas universitarias</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
+		<link rel="stylesheet" href="style.css?v=20261124-ui" />
+		<script type="module" src="js/app.js?v=20261124-usdt"></script>
+	</head>
+	<body>
+		<div class="app-shell">
+			<aside class="sidebar" id="sidebar">
+				<a class="brand" href="#dashboard" aria-label="UniFinanzas, panel principal">
+					<span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+					<span>Uni<span class="brand-accent">Finanzas</span></span>
+				</a>
+				<p class="sidebar-caption">TU ESPACIO UNIVERSITARIO</p>
+				<nav class="primary-nav" aria-label="Navegación principal">
+					<button class="nav-link is-active" type="button" data-view-target="dashboard"><span class="nav-symbol">▦</span> Resumen</button>
+					<button class="nav-link" type="button" data-view-target="expenses"><span class="nav-symbol">↗</span> Mis gastos</button>
+					<button class="nav-link" type="button" data-view-target="plans"><span class="nav-symbol">◎</span> Metas y planes</button>
+					<button class="nav-link" type="button" data-view-target="market"><span class="nav-symbol">⌕</span> Comparar compras</button>
+					<button class="nav-link" type="button" data-view-target="currency"><span class="nav-symbol">Bs</span> Divisas</button>
+				</nav>
+				<div class="sidebar-spacer"></div>
+				<article class="sidebar-budget">
+					<p>ESTA SEMANA</p>
+					<strong id="sidebar-spent">Bs. 0</strong>
+					<span>de <span id="sidebar-limit">Sin configurar</span></span>
+					<button class="sidebar-budget-edit" id="edit-budget-button" type="button">Configurar presupuesto</button>
+					<div class="sidebar-progress"><span id="sidebar-progress-fill"></span></div>
+				</article>
+				<p class="sidebar-local"><span class="status-dot"></span> Datos guardados en este equipo</p>
+			</aside>
+			<div class="main-shell">
+				<header class="topbar">
+					<div class="topbar-title">
+						<button class="mobile-menu" id="mobile-menu" type="button" aria-label="Abrir navegación" aria-expanded="false">☰</button>
+						<div><p class="section-kicker">CONTROL ESTUDIANTIL</p><h1 id="page-title">Resumen</h1></div>
+					</div>
+					<div class="topbar-right"><div class="assistant-mode" aria-label="Modo del asistente"><span class="assistant-mode-label" id="assistant-mode-label">IA: Con conexión</span><button class="mode-switch" id="assistant-mode-toggle" type="button" role="switch" aria-checked="true" aria-label="Cambiar modo del asistente"><span class="mode-switch-track" aria-hidden="true"><span class="mode-switch-thumb"></span></span></button></div><span class="rate-status" id="rate-status"><span class="status-dot"></span> Tasas pendientes</span><span class="today-label" id="today-label"></span></div>
+				</header>
+				<main class="main-content">
+					<section class="app-view" id="view-dashboard" aria-labelledby="dashboard-heading">
+						<div class="hero-strip">
+							<div><p class="eyebrow"><span class="eyebrow-line"></span> TU SEMANA, CON MÁS CLARIDAD</p><h2 id="dashboard-heading">Hola, estudiante.<br /><span>Vamos paso a paso.</span></h2><p class="hero-description">Tu dinero tiene un plan. Revisa cómo va y decide con calma qué sigue.</p></div>
+							<div class="hero-stamp" aria-hidden="true"><span>Bs.</span><i>✳</i></div>
+						</div>
+						<div class="section-toolbar"><div class="segmented period-switch" role="group" aria-label="Periodo del resumen"><button class="is-selected" type="button" data-period="week">Semana</button><button type="button" data-period="month">Mes</button><button type="button" data-period="year">Año</button></div><span class="period-note" id="period-note">Del lunes a hoy</span></div>
+						<article class="panel assistant-panel"><div class="panel-heading"><div><p class="section-kicker">ASISTENTE UNIFINANZAS</p><h2>Hablemos de tu dinero</h2></div><span class="assistant-mark">U</span></div><details class="api-key-settings" id="api-key-settings"><summary>Configurar API Key de Google AI Studio</summary><div class="api-key-fields"><label class="visually-hidden" for="gemini-api-key">API Key de Google AI Studio</label><input id="gemini-api-key" type="password" placeholder="Pega tu API Key" autocomplete="off" /><button type="button" id="toggle-api-key-visibility" aria-label="Mostrar API Key">Mostrar</button></div><div class="api-key-actions"><button type="button" class="primary-button" id="save-api-key">Guardar API Key</button><button type="button" class="text-action" id="remove-api-key">Eliminar</button></div><p class="api-key-status" id="api-key-status" aria-live="polite">Sin API Key configurada.</p></details><div class="assistant-transcript" id="assistant-transcript" aria-live="polite"><p class="assistant-reply">¡Hola! Puedo ayudarte a revisar tu presupuesto o pensar una compra. ¿Qué tienes en mente?</p></div><form class="assistant-form" id="assistant-form"><label class="visually-hidden" for="assistant-input">Escribe una pregunta al asistente</label><input id="assistant-input" type="text" placeholder="¿Cuánto me queda esta semana?" autocomplete="off" required /><button type="submit" aria-label="Enviar pregunta">↑</button></form><span class="local-assistant-note">Gemini solo con tu API Key; respaldo local sin conexión o sin clave.</span></article>
+						<div class="metric-grid">
+							<article class="metric-card metric-primary"><p id="period-total-label">GASTOS DE LA SEMANA</p><strong id="period-total">Bs. 0</strong><span id="period-budget-label">Presupuesto sin configurar</span><div class="progress-track" role="progressbar" aria-label="Presupuesto utilizado" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="period-progress"></span></div><div class="metric-foot"><span id="period-remaining">Calculando disponible</span><b id="period-percent">0%</b></div><div class="regular-foot"><span>Gastos regulares / semana</span><strong id="dashboard-recurring-weekly-total">Bs. 0</strong></div></article>
+							<article class="metric-card"><div class="metric-card-head"><p>INGRESOS</p><span class="metric-icon income-icon">＋</span></div><strong id="period-income">Bs. 0</strong><span>entradas en el periodo</span></article>
+							<article class="metric-card"><div class="metric-card-head"><p>BALANCE NETO</p><span class="metric-icon">↗</span></div><strong id="period-balance">Bs. 0</strong><span id="period-count-label">movimientos en el periodo</span></article>
+							<article class="metric-card"><div class="metric-card-head"><p>ESTADO</p><span class="metric-icon" id="period-state-icon">✓</span></div><strong class="state-value" id="period-state">Vas muy bien</strong><span id="period-state-message">Presupuesto bajo control.</span></article>
+						</div>
+						<div class="dashboard-grid"><article class="panel chart-panel"><div class="panel-heading"><div><p class="section-kicker">DISTRIBUCIÓN</p><h2>¿A dónde va?</h2></div><span class="panel-aside" id="category-period-label">Esta semana</span></div><div class="category-chart" id="category-chart"></div></article></div>
+						<article class="panel recent-panel"><div class="panel-heading"><div><p class="section-kicker">ACTIVIDAD RECIENTE</p><h2>Últimos movimientos</h2></div><button class="text-action" type="button" data-view-target="expenses">Ver todos <span>→</span></button></div><div class="recent-list" id="recent-expenses"></div></article>
+						<section class="dashboard-tips" aria-labelledby="dashboard-tips-heading"><div class="panel-heading"><div><p class="section-kicker">CONSEJOS PARA TU VIDA UNIVERSITARIA</p><h2 id="dashboard-tips-heading">Decisiones sencillas para cuidar tu dinero</h2></div></div><div class="personal-tip" id="personal-tip"></div><div class="tips-grid" id="tips-grid"></div></section>
+					</section>
+
+					<section class="app-view" id="view-expenses" aria-labelledby="expenses-heading" hidden>
+						<div class="view-intro"><div><p class="eyebrow"><span class="eyebrow-line"></span> REGISTRO PERSONAL</p><h2 id="expenses-heading">Cada movimiento, en su lugar.</h2><p>Añade gastos o ingresos, edítalos y conserva tu balance al día.</p></div><button class="export-button" id="export-button" type="button"><span aria-hidden="true">⇩</span> Exportar</button></div>
+						<div class="section-toolbar"><div class="segmented period-switch" role="group" aria-label="Filtrar gastos por periodo"><button class="is-selected" type="button" data-period="week">Semana</button><button type="button" data-period="month">Mes</button><button type="button" data-period="year">Año</button></div><span class="period-note" id="expenses-summary">0 gastos</span></div>
+						<div class="transaction-entry-grid">
+							<article class="panel transaction-form-panel">
+								<div class="panel-heading"><div><p class="section-kicker">MOVIMIENTO MANUAL</p><h2 id="transaction-form-heading">Añadir al presupuesto</h2></div><span class="metric-icon">＋</span></div>
+								<div class="transaction-mode" role="group" aria-label="Tipo de movimiento"><button class="is-selected" type="button" data-transaction-mode="expense" aria-pressed="true">− Gasto</button><button type="button" data-transaction-mode="income" aria-pressed="false">＋ Ingreso</button></div>
+								<form id="transaction-form" class="stack-form transaction-form">
+									<input id="transaction-type" type="hidden" value="expense" />
+									<label>Descripción<input id="transaction-description" maxlength="70" placeholder="Ej. Pasaje a la universidad" required /></label>
+									<div class="form-row"><label>Monto (VES)<input id="transaction-amount" type="number" min="1" step="1" placeholder="400" required /></label><label>Categoría<select id="transaction-category" required></select></label></div>
+									<label>Fecha<input id="transaction-date" type="date" required /></label>
+									<div class="transaction-form-actions"><button class="primary-button" id="transaction-submit" type="submit">Añadir movimiento <span>→</span></button><button class="text-action" id="cancel-transaction-edit" type="button" hidden>Cancelar edición</button></div>
+								</form>
+								<p class="form-feedback" id="transaction-feedback" aria-live="polite"></p>
+							</article>
+						</div>
+						<article class="panel ledger-panel transaction-ledger"><div class="panel-heading"><div><p class="section-kicker">MOVIMIENTOS DEL PERIODO</p><h2>Gastos e ingresos <span class="table-count" id="table-count">0</span></h2></div><span class="panel-aside" id="ledger-caption">Este periodo</span></div><div class="table-wrap"><table><thead><tr><th>DESCRIPCIÓN</th><th>TIPO</th><th>CATEGORÍA</th><th>FECHA</th><th class="amount-heading">MONTO</th><th><span class="visually-hidden">Acciones</span></th></tr></thead><tbody id="expense-table-body"></tbody></table></div></article>
+						<section class="panel recurring-panel" aria-labelledby="regular-income-heading"><div class="panel-heading"><div><p class="section-kicker">REFUERZO DEL PRESUPUESTO</p><h2 id="regular-income-heading">Ingresos regulares</h2></div><div class="recurring-week-total"><span>Aumento semanal</span><strong id="regular-income-weekly-total">Bs. 0</strong></div></div><div class="recurring-layout"><form id="regular-income-form" class="stack-form recurring-form"><label>Fuente del ingreso<input id="regular-income-description" maxlength="60" placeholder="Ej. Trabajo de apoyo" required /></label><div class="form-row"><label>Monto por periodo (VES)<input id="regular-income-amount" type="number" min="1" step="1" placeholder="50000" required /></label><label>Categoría<select id="regular-income-category" required><option>Beca</option><option>Trabajo</option><option>Apoyo familiar</option><option>Otro ingreso</option></select></label></div><label>Frecuencia<select id="regular-income-frequency"><option value="weekly">Cada semana</option><option value="monthly">Cada mes</option></select></label><div class="transaction-form-actions"><button class="primary-button" type="submit">Añadir ingreso regular <span>→</span></button></div><p class="form-feedback" id="regular-income-feedback" aria-live="polite"></p></form><div class="recurring-list" id="regular-income-list"><p class="empty-state">Aún no tienes ingresos regulares registrados.</p></div></div></section>
+						<section class="panel recurring-panel" aria-labelledby="recurring-heading"><div class="panel-heading"><div><p class="section-kicker">PAGOS PLANIFICADOS</p><h2 id="recurring-heading">Gastos regulares</h2></div><div class="recurring-week-total"><span>Proyección semanal</span><strong id="recurring-weekly-total">Bs. 0</strong></div></div><div class="recurring-layout"><form id="recurring-form" class="stack-form recurring-form"><input id="recurring-id" type="hidden" /><label>Concepto<input id="recurring-description" maxlength="60" placeholder="Ej. Pasaje" required /></label><div class="form-row"><label>Monto por ocasión (VES)<input id="recurring-amount" type="number" min="1" step="1" placeholder="400" required /></label><label>Categoría<select id="recurring-category" required><option>Transporte</option><option>Comida</option><option>Copias y materiales</option><option>Imprevistos</option></select></label></div><div class="form-row"><label>Frecuencia<select id="recurring-frequency"><option value="weekly">Cada semana</option><option value="weekly_multiple">Varias veces por semana</option><option value="biweekly">Cada 2 semanas</option><option value="monthly">Cada mes</option></select></label><label id="recurring-count-field" hidden>Veces por semana<select id="recurring-times"><option value="2">2 veces</option><option value="3" selected>3 veces</option><option value="4">4 veces</option><option value="5">5 veces</option><option value="6">6 veces</option><option value="7">7 veces</option></select></label></div><div class="transaction-form-actions"><button class="primary-button" id="recurring-submit" type="submit">Añadir gasto regular <span>→</span></button><button class="text-action" id="cancel-recurring-edit" type="button" hidden>Cancelar edición</button></div><p class="form-feedback" id="recurring-feedback" aria-live="polite"></p></form><div class="recurring-list" id="recurring-list"><p class="empty-state">Aún no tienes gastos regulares planificados.</p></div></div><p class="disclaimer-note">La proyección ayuda a planificar; los pagos programados no se registran como gastos reales automáticamente.</p></section>
+					</section>
+
+					<section class="app-view" id="view-plans" aria-labelledby="plans-heading" hidden>
+						<div class="view-intro"><div><p class="eyebrow"><span class="eyebrow-line"></span> OBJETIVOS A TU RITMO</p><h2 id="plans-heading">Ahorra con una meta clara.</h2><p>Divide una compra grande en pasos que sí caben en tu presupuesto.</p></div></div>
+						<div class="plans-grid"><article class="panel plan-form-panel"><div class="panel-heading"><div><p class="section-kicker">NUEVO PLAN</p><h2>¿Qué quieres comprar?</h2></div><span class="sparkle">◎</span></div><form id="plan-form" class="stack-form"><label>Nombre de la meta<input id="goal-name" name="name" placeholder="Ej. Audífonos para clases" required maxlength="60" /></label><div class="form-row"><label>Monto de la meta (VES)<input id="goal-target" name="target" type="number" min="1" step="1" placeholder="25000" required /></label><label>Aporte inicial opcional (VES)<input id="goal-saved" name="saved" type="number" min="0" step="1" value="0" /></label></div><label>Fecha ideal<input id="goal-date" name="date" type="date" required /></label><button class="primary-button" type="submit">Crear plan <span>→</span></button></form><p class="form-feedback" id="goal-feedback" aria-live="polite"></p></article><article class="panel plans-list-panel"><div class="panel-heading"><div><p class="section-kicker">TUS OBJETIVOS</p><h2>Planes activos</h2></div><span class="panel-aside" id="goal-count">0 metas</span></div><div class="goal-list" id="goal-list"></div></article></div>
+						<article class="recommendation-strip"><span class="recommendation-mark">✳</span><div><p class="section-kicker">RECOMENDACIÓN PERSONALIZADA</p><strong id="plan-recommendation">Crea una meta y calcularemos un ahorro semanal realista.</strong></div><button type="button" class="text-action" data-view-target="market">Comparar audífonos <span>→</span></button></article>
+					</section>
+
+					<section class="app-view" id="view-market" aria-labelledby="market-heading" hidden>
+						<div class="view-intro"><div><p class="eyebrow"><span class="eyebrow-line"></span> COMPRA CON COMPARACIÓN</p><h2 id="market-heading">Busca antes de pagar.</h2><p>Los precios de demostración no son cotizaciones reales ni recomendaciones de tiendas.</p></div><span class="demo-tag">DATOS SIMULADOS</span></div>
+						<div class="market-search panel"><form id="market-form"><label class="visually-hidden" for="market-query">Producto que quieres comparar</label><input id="market-query" value="audífonos bluetooth" placeholder="Ej. audífonos bluetooth" /><button class="primary-button" type="submit">Comparar <span>⌕</span></button></form><div class="market-safety"><span>✓</span> Revisa reputación del vendedor, dominio, garantía y método de pago antes de comprar.</div></div>
+						<div class="market-results-head"><div><p class="section-kicker">ESCENARIO DE PRECIOS</p><h2 id="market-results-title">Audífonos bluetooth</h2></div><span class="panel-aside">Solo demostración</span></div><div class="offer-list" id="offer-list"></div>
+						<div class="market-actions"><a class="secondary-button external-search" id="mercado-link" href="https://www.mercadolibre.com.ve/" target="_blank" rel="noopener noreferrer">Buscar en Mercado Libre Venezuela ↗</a><a class="text-action external-search" id="web-search-link" href="https://www.google.com/search" target="_blank" rel="noopener noreferrer">Ver otros comercios .ve ↗</a><button type="button" class="text-action" id="create-headphones-goal">Planear esta compra <span>→</span></button></div>
+						<p class="disclaimer-note">UniFinanzas no consulta inventario ni verifica vendedores; los importes de esta vista son ficticios. Los enlaces llevan a búsquedas externas.</p>
+					</section>
+
+					<section class="app-view" id="view-currency" aria-labelledby="currency-heading" hidden>
+						<div class="view-intro"><div><p class="eyebrow"><span class="eyebrow-line"></span> TASAS DE REFERENCIA</p><h2 id="currency-heading">Convierte con contexto.</h2><p>Consulta tasas de referencia en VES y calcula equivalencias rápidamente.</p></div><button type="button" class="secondary-button" id="refresh-rates">Actualizar tasas ↻</button></div>
+						<div class="rate-meta"><span class="rate-status" id="rates-updated"><span class="status-dot"></span> Consultando tasas…</span><span class="rate-disclaimer">Indicativas; verifica la tasa antes de operar.</span></div>
+						<div class="rate-grid" id="rate-grid"></div>
+						<article class="panel converter-panel"><div class="panel-heading"><div><p class="section-kicker">CONVERSOR</p><h2>¿Cuánto equivale?</h2></div><span class="panel-aside">Cálculo referencial</span></div><form class="converter-form" id="converter-form"><label>Cantidad<input id="conversion-amount" type="number" min="0" step="any" value="1" /></label><label>De<select id="conversion-from"><option value="VES">Bolívares (VES)</option><option value="USD_BCV">Dólar BCV</option><option value="EUR_BCV">Euro BCV</option><option value="USDT_REF">USDT Binance P2P</option></select></label><button type="button" class="swap-button" id="swap-currencies" aria-label="Intercambiar monedas">⇄</button><label>A<select id="conversion-to"><option value="USD_BCV">Dólar BCV</option><option value="VES">Bolívares (VES)</option><option value="EUR_BCV">Euro BCV</option><option value="USDT_REF">USDT Binance P2P</option></select></label></form><output class="conversion-result" id="conversion-result" for="conversion-amount conversion-from conversion-to">Cargando conversión…</output><p class="disclaimer-note">USDT usa la cotización Binance P2P actual para Venezuela.</p></article>
+					</section>
+
+				</main>
+				<footer class="main-footer"><span>UNIFINANZAS <b>✳</b> TU INFORMACIÓN SE QUEDA EN TU NAVEGADOR.</span><span>Revisa las tasas y cotizaciones antes de tomar decisiones.</span></footer>
+			</div>
+		</div>
+		<div class="budget-modal-backdrop" id="budget-modal" role="dialog" aria-modal="true" aria-labelledby="budget-modal-title" hidden>
+			<article class="budget-modal-panel">
+				<button class="budget-modal-close" id="close-budget-modal" type="button" aria-label="Cerrar configuración">×</button>
+				<p class="section-kicker">CONFIGURA TU PRESUPUESTO</p>
+				<h2 id="budget-modal-title">¿Cuánto puedes usar?</h2>
+				<p>Elige si quieres controlar tu dinero por semana o por mes. Puedes cambiarlo después.</p>
+				<form id="budget-config-form" class="stack-form">
+					<div class="budget-period-options" role="group" aria-label="Periodo del presupuesto">
+						<button class="is-selected" type="button" data-budget-period="weekly" aria-pressed="true">Semanal</button>
+						<button type="button" data-budget-period="monthly" aria-pressed="false">Mensual</button>
+					</div>
+					<input id="budget-period" type="hidden" value="weekly" />
+					<label id="budget-amount-label">Presupuesto semanal (VES)<input id="budget-amount" type="number" min="1" step="1" placeholder="Ingresa tu monto" required /></label>
+					<button class="primary-button" type="submit">Guardar presupuesto <span>→</span></button>
+					<button class="text-action" id="cancel-budget-edit" type="button" hidden>Cancelar</button>
+				</form>
+				<p class="form-feedback" id="budget-config-feedback" aria-live="polite"></p>
+			</article>
+		</div>
+		<div class="toast" id="toast" role="status" aria-live="polite"></div>
+	</body>
+</html>
